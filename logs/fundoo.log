@@ -1,0 +1,1 @@
+ERROR :2020-12-12 12:03:33,818 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :109 :140098564273920  :Thread-11 :3884 :error: 'dict' object has no attribute 'splitlines' while loging in 

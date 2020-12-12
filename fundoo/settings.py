@@ -157,7 +157,7 @@ if not DEBUG:
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
-    EMAIL_HOST_PASSWORD = ''
+    EMAIL_HOST_PASSWORD = 'Qwerty@0321'
 else:
     EMAIL_BACKEND = (
         'django.core.mail.backends.console.EmailBackend'
@@ -166,5 +166,28 @@ else:
 
 formatter = logging.Formatter('%(levelname)s :%(asctime)s :%(pathname)s :%(lineno)s :%(thread)d  :%(threadName)s :%('
                               'process)d :%(message)s')
-file_handler = logging.FileHandler(filename='/home/admin1/fundoo.log')
+file_handler = logging.FileHandler(filename='logs/fundoo.log')
 file_handler.setFormatter(formatter)
+
+# LOGGING ={
+#     'version':1,
+#     'loggers':{
+#         'django':{
+#             'handlers':['file'],
+#             'level':'DEBUG'
+#         }
+#     },
+#     'handlers':{
+#         'file':{
+#             'level':'DEBUG',
+#             'class' : 'logging.FileHandler',
+#             'filename':'/logs/fundoo.log',
+#         }
+#     },
+#     'formatter':{
+#         'simpleRe':{
+#             'format':'%(levelname)s :%(asctime)s :%(pathname)s :%(lineno)s :%(thread)d  :%(threadName)s:%('
+#                               'process)d :%(message)s'
+#         }
+#     }
+# }
