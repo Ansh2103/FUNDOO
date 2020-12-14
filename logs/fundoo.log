@@ -24,3 +24,4 @@ ERROR :2020-12-14 05:25:16,715 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/v
 ERROR :2020-12-14 05:26:23,677 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :175 :139750612215552  :Thread-20 :6972 :something went wrong while logging out
 ERROR :2020-12-14 05:26:34,267 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :175 :139750612215552  :Thread-22 :6972 :something went wrong while logging out
 ERROR :2020-12-14 05:30:50,002 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :172 :139926786934528  :Thread-1 :7410 :something went wrong while logging out
+ERROR :2020-12-14 05:40:27,496 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :174 :140152925726464  :Thread-1 :7752 :something went wrong while logging out
