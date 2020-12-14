@@ -2,6 +2,7 @@
 """
  ******************************************************************************
  *  Purpose: will save user details after registrations
+             will user can login,Update, and reset 
  *
  *  @author  Shubham Kumar
  *  @version 3.8.5
@@ -28,9 +29,10 @@ from users.serializers import RegistrationSerializer,LoginSerializer,EmailSerial
 from django.core.validators import validate_email
 from django_short_url.views import get_surl
 from django_short_url.models import ShortURL
+from .utils import Util
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.authtoken.models import Token
-# from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -46,7 +48,6 @@ class Registrations(GenericAPIView):
         username = request.data['username']
         email = request.data['email']
         password = request.data['password']
-
 
         smd = {
             'success': False,
@@ -82,33 +83,36 @@ class Registrations(GenericAPIView):
                 user_created.save()
                 # user is unique then we will send token to his/her email for validation
                 if user_created is not None:
-                    token = Token(username, password)
+                    #token = Token(username, password)
+                    token =RefreshToken.for_user(user_created).access_token
                     url = str(token)
                     surl = get_surl(url)
-                    z = surl.split("/")
 
-                    mail_subject = "Activate your account by clicking below link"
+                    #relativeLink = reverse('activate',kwargs={'surl':surl})
+
+                    mail_subject = "Activate your account by clicking the link"
                     mail_message ={
-                        'user': user_created.username,
+                        'user': 'Hey' +user_created.username,
                         'domain': get_current_site(request).domain,
-                        'surl': z[2]
+                        'surl': surl
                     }
                     recipient_email = user_created.email
-                    email = EmailMessage(mail_subject, mail_message, to=[recipient_email])
-                    email.send()
+                    data = EmailMessage(mail_subject, mail_message, to=[recipient_email])
+                    Util.send_email(data)
+
                     smd = {
                         'success': True,
                         'message': 'please check the mail and click on the link  for validation',
                         'data': [token],
                     }
-                    logger.error("email was sent to %s email address ", username)
+                    logger.info("email was sent to %s email address ", username)
                     return HttpResponse(json.dumps(smd), status=201)
             except Exception as e:
                 smd["success"] = False
                 smd["message"] = "username already taken"
                 logger.error("error: %s while loging in ", str(e))
                 return HttpResponse(json.dumps(smd), status=400)
-                #return Response(smd, status=status.HTTP_400_BAD_REQUEST)
+               
 
 
 class Login(GenericAPIView):
@@ -133,18 +137,31 @@ class Login(GenericAPIView):
                 smd['message'] = 'one or more fields is empty'
                 return HttpResponse(json.dumps(smd), status=400)
 
+            user = auth.authenticate(username=username, password=password)
+              
+            if user is not None:
+                
+                smd = {
+                    'success': True,
+                    'message': "successfully logged",
+                }
+                return HttpResponse(json.dumps(smd), status=201)
+            else:
+                smd['message'] = 'invaild credentials'
+                logger.error("invaild credentials for username: %s ",username)
+                return HttpResponse(json.dumps(smd), status=400)
         except Exception as e:
             smd['message'] = 'invaild credentials'
             logger.error("error: %s while loging in ", str(e))
             return HttpResponse(json.dumps(smd), status=400)
 
+    
 class Logout(GenericAPIView):
     serializer_class = LoginSerializer
 
     def get(self, request):
         """
         :param request: logout request is made
-        :return: we will delete the token which was stored in redis
         """
         smd = {"success": False, "message": "not a vaild user", "data": []}
         try:
@@ -155,7 +172,7 @@ class Logout(GenericAPIView):
             return HttpResponse(json.dumps(smd), status=200)
         except Exception:
             logger.error("something went wrong while logging out")
-            return HttpResponse(json.dumps(smd), status=400)
+        return HttpResponse(json.dumps(smd), status=400)
 
 
 class ForgotPassword(GenericAPIView):
@@ -196,14 +213,13 @@ class ForgotPassword(GenericAPIView):
                     token = Token(username, id)
                     url = str(token)
                     surl = get_surl(url)
-                    z = surl.split("/")
 
                     # email is generated  where it is sent the email address entered in the form
                     mail_subject = "Activate your account by clicking below link"
                     mail_message = {
                         'user': username,
                         'domain': get_current_site(request).domain,
-                        'surl': z[2]
+                        
                     }
 
                     recipientemail = email
@@ -232,8 +248,7 @@ def activate(request, surl):
     try:
         # decode is done for the JWT token where username is fetched
 
-        tokenobject = ShortURL.objects.get(surl=surl)
-        token = tokenobject.lurl
+        token = request.GET.get('token')
         decode = jwt.decode(token, settings.SECRET_KEY)
         username = decode['username']
         user = User.objects.get(username=username)
@@ -258,36 +273,36 @@ def activate(request, surl):
         return redirect('/api/registration')
 
 
-def reset_password(request, surl):
-    """
-    :param surl:  token is again send to the user
-    :param request:  user will request for resetting password
-    :return: will reset the password
-    """
-    try:
-        # here decode is done with jwt
+# def reset_password(request, surl):
+#     """
+#     :param surl:  token is again send to the user
+#     :param request:  user will request for resetting password
+#     :return: will reset the password
+#     """
+#     try:
+#         # here decode is done with jwt
 
-        tokenobject = ShortURL.objects.get(surl=surl)
-        token = tokenobject.lurl
-        decode = jwt.decode(token, settings.SECRET_KEY)
-        username = decode['username']
-        user = User.objects.get(username=username)
+#         tokenobject = ShortURL.objects.get(surl=surl)
+#         token = tokenobject.lurl
+#         decode = jwt.decode(token, settings.SECRET_KEY)
+#         username = decode['username']
+#         user = User.objects.get(username=username)
 
-        # if user is not none then we will fetch the data and redirect to the reset password page
-        if user is not None:
-            context = {'userReset': user.username}
-            print(context)
-            return redirect('/api/resetpassword/' + str(user))
-        else:
-            messages.info(request, 'was not able to sent the email')
-            return redirect('/api/forgotpassword')
-    except KeyError:
-        messages.info(request, 'was not able to sent the email')
-        return redirect('/api/forgotpassword')
-    except Exception as e:
-        print(e)
-        messages.info(request, 'activation link expired')
-        return redirect('/api/forgotpassword')
+#         # if user is not none then we will fetch the data and redirect to the reset password page
+#         if user is not None:
+#             context = {'userReset': user.username}
+#             print(context)
+#             return redirect('/api/resetpassword/' + str(user))
+#         else:
+#             messages.info(request, 'was not able to sent the email')
+#             return redirect('/api/forgotpassword')
+#     except KeyError:
+#         messages.info(request, 'was not able to sent the email')
+#         return redirect('/api/forgotpassword')
+#     except Exception as e:
+#         print(e)
+#         messages.info(request, 'activation link expired')
+#         return redirect('/api/forgotpassword')
 
 class ResetPassword(GenericAPIView):
     """

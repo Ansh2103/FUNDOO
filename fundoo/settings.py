@@ -140,54 +140,30 @@ STATIC_URL = '/static/'
 #     'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework_simplejwt.authentication.JWTAuthentication',)
 # }
 
-# REST_FRAMEWORK = {
-#    'DEFAULT_AUTHENTICATION_CLASSES': (
-#        'rest_framework.authentication.TokenAuthentication',
-#    ),
-#    'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAdminUser'
-#    ),
-#    'PAGINATE_BY': 10,
-# }
 
 
-if not DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST_USER = "swayamshubham007.sm@gmail.com"
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_PASSWORD = 'Qwerty@0321'
-else:
-    EMAIL_BACKEND = (
-        'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = "swayamshubham007.sm@gmail.com"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = ''
 
-    )
+# if not DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#     EMAIL_HOST_USER = "swayamshubham007.sm@gmail.com"
+#     EMAIL_HOST = 'smtp.gmail.com'
+#     EMAIL_PORT = 587
+#     EMAIL_USE_TLS = True
+#     EMAIL_HOST_PASSWORD = 'Qwerty@0321'
+# else:
+#     EMAIL_BACKEND = (
+#         'django.core.mail.backends.console.EmailBackend'
+
+#     )
 
 formatter = logging.Formatter('%(levelname)s :%(asctime)s :%(pathname)s :%(lineno)s :%(thread)d  :%(threadName)s :%('
                               'process)d :%(message)s')
 file_handler = logging.FileHandler(filename='logs/fundoo.log')
 file_handler.setFormatter(formatter)
 
-# LOGGING ={
-#     'version':1,
-#     'loggers':{
-#         'django':{
-#             'handlers':['file'],
-#             'level':'DEBUG'
-#         }
-#     },
-#     'handlers':{
-#         'file':{
-#             'level':'DEBUG',
-#             'class' : 'logging.FileHandler',
-#             'filename':'/logs/fundoo.log',
-#         }
-#     },
-#     'formatter':{
-#         'simpleRe':{
-#             'format':'%(levelname)s :%(asctime)s :%(pathname)s :%(lineno)s :%(thread)d  :%(threadName)s:%('
-#                               'process)d :%(message)s'
-#         }
-#     }
-# }

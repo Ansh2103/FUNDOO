@@ -1,1 +1,26 @@
 ERROR :2020-12-12 12:03:33,818 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :109 :140098564273920  :Thread-11 :3884 :error: 'dict' object has no attribute 'splitlines' while loging in 
+ERROR :2020-12-12 18:15:05,619 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :77 :140343349602048  :Thread-11 :4194 :email address is already registered  while logging in
+ERROR :2020-12-12 18:16:14,484 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :111 :140343357994752  :Thread-37 :4194 :error: 'EmailMessage' object is not subscriptable while loging in 
+ERROR :2020-12-12 18:20:26,637 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :112 :140671896127232  :Thread-7 :4548 :error: 'EmailMessage' object is not subscriptable while loging in 
+ERROR :2020-12-12 18:27:03,773 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :122 :139895607654144  :Thread-7 :4722 :error: Reverse for 'email-verify' not found. 'email-verify' is not a valid view function or pattern name. while loging in 
+ERROR :2020-12-12 18:31:26,091 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :124 :140635361429248  :Thread-5 :4859 :error: Reverse for 'email-verify' not found. 'email-verify' is not a valid view function or pattern name. while loging in 
+ERROR :2020-12-12 18:34:03,568 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :112 :139795730102016  :Thread-3 :5141 :error: name 'user' is not defined while loging in 
+ERROR :2020-12-12 18:36:04,418 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :112 :140299455481600  :Thread-3 :5279 :error: 'EmailMessage' object is not subscriptable while loging in 
+ERROR :2020-12-12 18:39:39,239 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :141 :140299447088896  :Thread-15 :5279 :error: 'username' while loging in 
+ERROR :2020-12-12 21:37:23,358 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :115 :139764678260480  :Thread-13 :5395 :error: 'EmailMessage' object is not subscriptable while loging in 
+ERROR :2020-12-12 21:38:54,802 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :115 :140121546168064  :Thread-11 :5675 :error: 'EmailMessage' object is not subscriptable while loging in 
+ERROR :2020-12-12 21:40:07,321 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :115 :139633186649856  :Thread-3 :5779 :error: 'EmailMessage' object is not subscriptable while loging in 
+ERROR :2020-12-12 21:40:55,014 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :115 :139633195042560  :Thread-11 :5779 :error: 'EmailMessage' object is not subscriptable while loging in 
+ERROR :2020-12-12 21:42:10,889 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :115 :139711844108032  :Thread-3 :5906 :error: 'EmailMessage' object is not subscriptable while loging in 
+ERROR :2020-12-12 21:44:05,569 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :115 :139653667505920  :Thread-3 :5993 :error: name 'z' is not defined while loging in 
+ERROR :2020-12-13 07:12:59,894 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :112 :140622849627904  :Thread-30 :12318 :error: Reverse for 'email-verify' not found. 'email-verify' is not a valid view function or pattern name. while loging in 
+ERROR :2020-12-13 07:13:30,694 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :62 :140622858020608  :Thread-34 :12318 :error: ['Enter a valid email address.'] while as email entered was not a vaild email address
+ERROR :2020-12-13 07:13:49,101 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :69 :140622849627904  :Thread-38 :12318 :one of the details missing logging in
+ERROR :2020-12-13 07:13:57,633 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :112 :140622849627904  :Thread-40 :12318 :error: Reverse for 'email-verify' not found. 'email-verify' is not a valid view function or pattern name. while loging in 
+ERROR :2020-12-14 04:34:24,833 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :113 :139718238926592  :Thread-27 :5029 :error: Reverse for 'activate' not found. 'activate' is not a valid view function or pattern name. while loging in 
+ERROR :2020-12-14 05:24:07,800 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :113 :139750612215552  :Thread-5 :6972 :error: 'EmailMessage' object is not subscriptable while loging in 
+ERROR :2020-12-14 05:25:05,286 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :151 :139750612215552  :Thread-11 :6972 :invaild credentials for username: demo123 
+ERROR :2020-12-14 05:25:16,715 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :151 :139750612215552  :Thread-13 :6972 :invaild credentials for username: demo 
+ERROR :2020-12-14 05:26:23,677 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :175 :139750612215552  :Thread-20 :6972 :something went wrong while logging out
+ERROR :2020-12-14 05:26:34,267 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :175 :139750612215552  :Thread-22 :6972 :something went wrong while logging out
+ERROR :2020-12-14 05:30:50,002 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :172 :139926786934528  :Thread-1 :7410 :something went wrong while logging out
