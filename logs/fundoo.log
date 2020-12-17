@@ -25,3 +25,14 @@ ERROR :2020-12-14 05:26:23,677 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/v
 ERROR :2020-12-14 05:26:34,267 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :175 :139750612215552  :Thread-22 :6972 :something went wrong while logging out
 ERROR :2020-12-14 05:30:50,002 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :172 :139926786934528  :Thread-1 :7410 :something went wrong while logging out
 ERROR :2020-12-14 05:40:27,496 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :174 :140152925726464  :Thread-1 :7752 :something went wrong while logging out
+INFO :2020-12-14 07:24:57,004 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :116 :140348299470592  :Thread-13 :5953 :email was sent to ShubhamKumar email address 
+ERROR :2020-12-14 07:24:57,082 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :121 :140348299470592  :Thread-13 :5953 :error: Object of type AccessToken is not JSON serializable while loging in 
+ERROR :2020-12-14 07:27:29,933 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :121 :140312260998912  :Thread-9 :6355 :error: name 'token' is not defined while loging in 
+ERROR :2020-12-14 07:29:10,802 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :77 :140312260998912  :Thread-10 :6355 :email address is already registered  while logging in
+ERROR :2020-12-14 07:29:49,719 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :121 :140312260998912  :Thread-15 :6355 :error: name 'token' is not defined while loging in 
+ERROR :2020-12-14 07:33:04,737 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :122 :140004572493568  :Thread-1 :6666 :error: name 'token' is not defined while loging in 
+ERROR :2020-12-14 07:34:13,620 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :77 :140341121730304  :Thread-1 :6719 :email address is already registered  while logging in
+ERROR :2020-12-14 07:37:23,727 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :77 :140642419218176  :Thread-5 :7073 :email address is already registered  while logging in
+ERROR :2020-12-14 07:37:28,751 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :77 :140642419218176  :Thread-6 :7073 :email address is already registered  while logging in
+INFO :2020-12-14 07:41:43,027 :/home/shubh/Desktop/ProjectFundoo/fundoo/users/views.py :117 :140008343443200  :Thread-1 :7267 :email was sent to shubhamiii email address 
+ERROR :2020-12-17 00:58:50,137 :/home/shubh/Desktop/ProjectFundoo/fundoo/note/views.py :62 :139985592248064  :Thread-3 :8095 : AnonymousUser for  {'color': [ErrorDetail(string='Enter a valid value.', code='invalid')]}

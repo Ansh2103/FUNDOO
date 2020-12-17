@@ -33,6 +33,7 @@ from .utils import Util
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
+from django.core.mail import send_mail
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -71,47 +72,56 @@ class Registrations(GenericAPIView):
             #return Response(smd, status=status.HTTP_400_BAD_REQUEST)
 
         # if email exists it will show error message
-        elif User.objects.filter(email=email).exists():
-            smd['message'] = "email address is already registered "
-            logger.error("email address is already registered  while logging in")
-            return HttpResponse(json.dumps(smd), status=400)
+        # elif User.objects.filter(email=email).exists():
+        #     smd['message'] = "email address is already registered "
+        #     logger.error("email address is already registered  while logging in")
+        #     return HttpResponse(json.dumps(smd), status=400)
             #return Response(smd, status=status.HTTP_400_BAD_REQUEST)
 
         else:
             try:
-                user_created = User.objects.create_user(username=username, email=email, password=password,is_active=True)
-                user_created.save()
+                #user_created = User.objects.create_user(username=username, email=email, password=password,is_active=True)
+                #user_created.save()
                 # user is unique then we will send token to his/her email for validation
-                if user_created is not None:
+                #if user_created is not None:
                     #token = Token(username, password)
-                    token =RefreshToken.for_user(user_created).access_token
-                    url = str(token)
-                    surl = get_surl(url)
+                    # token =RefreshToken.for_user(user_created).access_token
+                    # url = str(token)
+                    # surl = get_surl(url)
 
-                    #relativeLink = reverse('activate',kwargs={'surl':surl})
+                    # #relativeLink = reverse('activate',kwargs={'surl':surl})
 
-                    mail_subject = "Activate your account by clicking the link"
-                    mail_message ={
-                        'user': 'Hey' +user_created.username,
-                        'domain': get_current_site(request).domain,
-                        'surl': surl
-                    }
-                    recipient_email = user_created.email
-                    data = EmailMessage(mail_subject, mail_message, to=[recipient_email])
-                    Util.send_email(data)
+                    # mail_subject = "Activate your account by clicking the link"
+                    # mail_message ={
+                    #     'user': 'Hey' +user_created.username,
+                    #     'domain': get_current_site(request).domain,
+                    #     'surl': surl
+                    # }
+                recipient_email = email
 
-                    smd = {
-                        'success': True,
-                        'message': 'please check the mail and click on the link  for validation',
-                        'data': [token],
-                    }
-                    logger.info("email was sent to %s email address ", username)
-                    return HttpResponse(json.dumps(smd), status=201)
+                send_mail(
+                    "Activate your account by clicking the link",
+                    'Here is the message.',
+                    'swayamshubham007.sm@gmail.com',
+                    [recipient_email],
+                    fail_silently=False,
+                )
+                # data = EmailMessage(mail_subject, mail_message,to=[recipient_email])
+                #Util.send_email(data)
+
+                smd = {
+                    'success': True,
+                    'message': 'please check the mail and click on the link  for validation',
+                    #'data': [token],
+                }
+                logger.info("email was sent to %s email address ", username)
+                return HttpResponse(json.dumps(smd), status=201)
             except Exception as e:
                 smd["success"] = False
                 smd["message"] = "username already taken"
+                print (e)
                 logger.error("error: %s while loging in ", str(e))
-                return HttpResponse(json.dumps(smd), status=400)
+            return HttpResponse(json.dumps(smd), status=400)
                
 
 

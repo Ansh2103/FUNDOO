@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'note',
+    'labels',
     'users',
     'colorful',
     'django_short_url'
@@ -91,11 +92,11 @@ WSGI_APPLICATION = 'fundoo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fundoo',
-        'USER': 'fundoouser',
+        'NAME': 'fundoodb',
+        'USER': 'postgres',
         'PASSWORD': 'password',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
@@ -169,3 +170,5 @@ formatter = logging.Formatter('%(levelname)s :%(asctime)s :%(pathname)s :%(linen
 file_handler = logging.FileHandler(filename='logs/fundoo.log')
 file_handler.setFormatter(formatter)
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

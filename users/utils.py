@@ -9,12 +9,12 @@ class EmailThread(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        self.email.send()
+        self.email.send(fail_silently=False)
 
 
 class Util:
     @staticmethod
     def send_email(data):
         email = EmailMessage(
-            subject=data['mail_subject'], body=data['mail_body'], to=data['recipient_email'])
+            subject=data['mail_subject'], body=data['mail_message'], to=data['recipient_email'])
         EmailThread(email).start()
